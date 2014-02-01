@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Bootstrap -->
 	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<style>
 		#signIn{
 			max-width: 300px;
@@ -28,22 +29,11 @@
 	</style>
 </head>
 <body>
-	<div class="navbar navbar-fixed-top">
-		<div class="navbar-inner">
-			<a class="brand" href="/">CS 462</a>
-		</div>
-		<div class="nav-collapse collapse navbar-responsive-collapse">
-			<ul class="nav" id="topLinks">
-				<li><a href="/">Home</a></li>
-				<li><a href="/signin.php">Sign In</a></li>
-				<li class="active"><a href="/register.php">Register</a></li>
-			</ul>
-		</div>
-	</div><!-- navbar -->
+	<?php include "pageParts/navbar.php" ?>
 	
 	<div class="container content">
 		<div id="signIn">
-			<form method="POST" action="/PHPForms/register.php" id="signInForm">
+			<form method="POST" action="PHPForms/register.php" id="signInForm">
 				<fieldset>
 					<legend>Register</legend>
 					<div id="signInFields">
