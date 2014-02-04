@@ -56,7 +56,12 @@
 					echo "Click a user to see their last check-in location.";
 				}
 				else{
-					echo $username . " data";
+					if(isset($_SESSION['username']) && $username == $_SESSION['username']){
+						echo $username . " - you are signed in";
+					}
+					else{
+						echo $username . " data";
+					}
 				}
 				?>
 			</div>

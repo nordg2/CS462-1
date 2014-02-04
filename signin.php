@@ -39,7 +39,7 @@
 					<legend>Sign in</legend>
 					<div id="signInFields">
 						<label>Username</label>
-						<input type="text" id="username" name="username">
+						<input type="text" id="username" name="username" autocomplete="off">
 						<div id="usernameMessage"></div>
 						<button type="submit" class="btn">Sign In</button>
 						<span class="help-block">
