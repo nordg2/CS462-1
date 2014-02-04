@@ -17,17 +17,8 @@
 	<?php include "pageParts/navbar.php" ?>
 	
 	<div class="container content" id="content">
-		<h3><u>Current Users</u></h3>
-		<?php
-		//Load in the current users
-		$file = "forms/users.json";
-		$string = file_get_contents($file);
-		$users=json_decode($string,true);
-		
-		foreach($users as $name){
-			echo $name . '<br/>';
-		}
-		?>
+		<h3><u>Privacy Policy</u></h3>
+		This is a test site and it is highly recommended that you do <b>not</b> sign in with real information.
 	</div><!-- container content -->
 	
 	<script src="js/bootstrap.min.js"></script>
