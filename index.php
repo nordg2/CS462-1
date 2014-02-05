@@ -96,7 +96,7 @@
 		
 			<div class="span10">
 				<?php
-				if(isset($_SESSION['username']) && !isset($_SESSION['token'])){
+				if(isset($_SESSION['username'])){
 					echo '<a class="btn btn-primary" href="https://foursquare.com/oauth2/authenticate?client_id=TKMC01BZYM0CACKCVC1OHQS3QLWAETKTZ5PU51M3PQ41W0TX&response_type=code&redirect_uri=https://ec2-184-73-152-240.compute-1.amazonaws.com/index.php">Sign in through FourSquare</a><hr/>';
 				}
 				if($username == ""){
