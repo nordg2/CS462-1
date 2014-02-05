@@ -7,7 +7,7 @@ $file = "users.json";
 $string = file_get_contents($file);
 $users=json_decode($string,true);
 $tokenfile = "tokens.json";
-$string = file_get_contents($file);
+$string = file_get_contents($tokenfile);
 $tokens=json_decode($string,true);
 
 $username = $_POST['username'];

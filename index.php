@@ -107,6 +107,11 @@
 						if(!isset($_SESSION['token'])){
 							echo "You have not yet signed in through foursquare. You can do so through the link above.";
 						}
+						else{
+							echo "https://api.foursquare.com/v2/users/self/checkins?oauth_token=" . $_SESSION['token'] . "&v=20140205";
+							$locations = json_decode(file_get_contents_curl("https://api.foursquare.com/v2/users/self/checkins?oauth_token=" . $_SESSION['token'] . "&v=20140205"));
+							echo var_dump($locations);
+						}
 					}
 					else{
 						echo $username . " has not yet signed in through foursquare.";
