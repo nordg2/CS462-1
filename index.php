@@ -113,7 +113,7 @@
 							echo "<table class='table'><tr><th>Venue</th><th>Address</th><th>Time of check-in</th></tr>";
 							$items = $locations['response']['checkins']['items'];
 							foreach($items as $i){
-								echo "<tr><td>" . $i['venue']['name'] . "</td><td>" . $i['venue']['location']['address'] . "</td><td>" . date('g:ia \o\n l jS F Y',$i['createdAt']) . "</td></tr>";
+								echo "<tr><td>" . $i['venue']['name'] . "</td><td>" . $i['venue']['location']['address'] . "</td><td>" . date('g:ia \o\n l jS F Y',$i['createdAt'] + ($i['timeZoneOffset'] * 60)) . "</td></tr>";
 							}
 							echo "</table>";
 						}
@@ -136,7 +136,7 @@
 							echo "<table class='table'><tr><th>Venue</th><th>Address</th><th>Time of check-in</th></tr>";
 							$items = $locations['response']['checkins']['items'];
 							foreach($items as $i){
-								echo "<tr><td>" . $i['venue']['name'] . "</td><td>" . $i['venue']['location']['address'] . "</td><td>" . date('g:ia \o\n l jS F Y',$i['createdAt'] + $i['timeZoneOffset']) . "</td></tr>";
+								echo "<tr><td>" . $i['venue']['name'] . "</td><td>" . $i['venue']['location']['address'] . "</td><td>" . date('g:ia \o\n l jS F Y',$i['createdAt'] + ($i['timeZoneOffset'] * 60)) . "</td></tr>";
 								break;
 							}
 							echo "</table>";
