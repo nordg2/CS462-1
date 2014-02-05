@@ -108,9 +108,12 @@
 							echo "You have not yet signed in through foursquare. You can do so through the link above.";
 						}
 						else{
-							echo "https://api.foursquare.com/v2/users/self/checkins?oauth_token=" . $_SESSION['token'] . "&v=20140205";
-							$locations = json_decode(file_get_contents_curl("https://api.foursquare.com/v2/users/self/checkins?oauth_token=" . $_SESSION['token'] . "&v=20140205"));
-							echo var_dump($locations);
+							$locations = json_decode(file_get_contents_curl("https://api.foursquare.com/v2/users/self/checkins?oauth_token=" . $_SESSION['token'] . "&v=20140205"),TRUE);
+							echo "<h4>All Recent Locations</h4>";
+							$items = $locations['response']['checkins']['items'];
+							foreach($items as $i){
+								echo $i['venue']['name'] . " - " . $i['venue']['location']['address'] . " - " . date('Y-m-d H:i',$i['createdAt']) . "<br/>";
+							}
 						}
 					}
 					else{
