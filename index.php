@@ -22,12 +22,27 @@
 	<?php include "pageParts/navbar.php" ?>
 	
 	<?php
+	
+	function file_get_contents_curl($url) {
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_HEADER, 0);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); //Set curl to return the data instead of printing it to the browser.
+		curl_setopt($ch, CURLOPT_URL, $url);
+		$data = curl_exec($ch);
+		curl_close($ch);
+		return $data;
+	}
+	
 	//Deal with response code if there is one
 	if(isset($_GET['code'])){
 		$code = $_GET['code'];
-		$access = json_decode(file_get_contents("https://foursquare.com/oauth2/access_token?client_id=TKMC01BZYM0CACKCVC1OHQS3QLWAETKTZ5PU51M3PQ41W0TX&client_secret=WRI3MSB5HM0T0GFCXRCCFQAEIJZ4E5G2WB2GQSKZEAXH3U4O&grant_type=authorization_code&redirect_uri=https://ec2-184-73-152-240.compute-1.amazonaws.com/index.php&code=" . $code));
-		$token = $access['access_token'];
+		$access = json_decode(file_get_contents_curl("https://foursquare.com/oauth2/access_token?client_id=TKMC01BZYM0CACKCVC1OHQS3QLWAETKTZ5PU51M3PQ41W0TX&client_secret=WRI3MSB5HM0T0GFCXRCCFQAEIJZ4E5G2WB2GQSKZEAXH3U4O&grant_type=authorization_code&redirect_uri=https://ec2-184-73-152-240.compute-1.amazonaws.com/index.php&code=" . $code));
 		
+		$token = "";
+		foreach($access as $name){
+			$token = $name;
+		}
+
 		//Load in the current tokens
 		$file = "forms/tokens.json";
 		$string = file_get_contents($file);
