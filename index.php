@@ -110,10 +110,10 @@
 						else{
 							$locations = json_decode(file_get_contents_curl("https://api.foursquare.com/v2/users/self/checkins?oauth_token=" . $_SESSION['token'] . "&v=20140205"),TRUE);
 							echo "<h4>All Recent Locations</h4>";
-							echo "<table><tr><th>Venue</th><th>Address</th><th>Time of check-in</th></tr>"
+							echo "<table class='table'><tr><th>Venue</th><th>Address</th><th>Time of check-in</th></tr>"
 							$items = $locations['response']['checkins']['items'];
 							foreach($items as $i){
-								echo "<tr><td>" . $i['venue']['name'] . "</td><td>" . $i['venue']['location']['address'] . "</td><td>" . date('g:ia \o\n l jS F Y',$i['createdAt']) . "</td></tr>";
+								echo "<tr><td>" . $i['venue']['name'] . "</td><td>" . $i['venue']['location']['address'] . "</td><td>" . date('Y-m-d H:i',$i['createdAt']) . "</td></tr>";
 							}
 							echo "</table>";
 						}
