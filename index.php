@@ -119,7 +119,31 @@
 						}
 					}
 					else{
-						echo $username . " has not yet signed in through foursquare.";
+						//Load in the current tokens
+						$file = "forms/tokens.json";
+						$string = file_get_contents($file);
+						$tokens=json_decode($string,true);
+
+						if($tokens == null){
+							$tokens = array();
+						}
+						
+						if(isset($tokens[$_GET['user'])){
+							$t = $tokens[$_GET['user']];
+							
+							$locations = json_decode(file_get_contents_curl("https://api.foursquare.com/v2/users/self/checkins?oauth_token=" . $t . "&v=20140205"),TRUE);
+							echo "<h4>Last Location</h4>";
+							echo "<table class='table'><tr><th>Venue</th><th>Address</th><th>Time of check-in</th></tr>";
+							$items = $locations['response']['checkins']['items'];
+							foreach($items as $i){
+								echo "<tr><td>" . $i['venue']['name'] . "</td><td>" . $i['venue']['location']['address'] . "</td><td>" . date('g:ia \o\n l jS F Y',$i['createdAt']) . "</td></tr>";
+								break;
+							}
+							echo "</table>";
+						}
+						else{
+							echo $username . " has not yet signed in through foursquare.";
+						}
 					}
 				}
 				?>
