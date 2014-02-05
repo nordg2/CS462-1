@@ -128,7 +128,7 @@
 							$tokens = array();
 						}
 						
-						if(isset($tokens[$_GET['user'])){
+						if(isset($tokens[$_GET['user']])){
 							$t = $tokens[$_GET['user']];
 							
 							$locations = json_decode(file_get_contents_curl("https://api.foursquare.com/v2/users/self/checkins?oauth_token=" . $t . "&v=20140205"),TRUE);
